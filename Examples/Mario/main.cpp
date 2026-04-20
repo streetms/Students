@@ -31,8 +31,9 @@ int main() {
         sf::IntRect(64,96, 32, 32),
         sf::IntRect(96,96, 32, 32),
     };
-    Block::setTexture("/home/konstantin/CLionProjects/Students/Examples/Mario/images/blocks.png");
-    auto hero = std::make_shared<Hero>("/home/konstantin/CLionProjects/Students/Examples/Mario/images/hero.png",50,rects,map);
+
+    Block::setTexture("images/blocks.png");
+    auto hero = std::make_shared<Hero>("images/hero.png",50,rects,map);
 
     // Block block;
     std::vector<std::shared_ptr<sf::Drawable>> objects = {
