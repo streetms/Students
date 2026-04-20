@@ -1,6 +1,16 @@
-cmake_minimum_required(VERSION 4.0)
+cmake_minimum_required(VERSION 3.5)
 project(mario)
 set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
+include(FetchContent)
+
+FetchContent_Declare(
+        sfml
+        GIT_REPOSITORY https://github.com/SFML/SFML.git
+        GIT_TAG 2.5.1
+)
+
+FetchContent_MakeAvailable(sfml)
 
 add_executable(mario main.cpp
         Hero.cpp
