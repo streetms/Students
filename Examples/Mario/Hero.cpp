@@ -10,7 +10,7 @@ sf::IntRect Hero::reflect(sf::IntRect rect) {
     return {rect.left+rect.width, rect.top, -rect.width, rect.height};
 }
 
-Hero::Hero(std::string texture_path, double speed, std::vector<sf::IntRect> rects, std::vector<std::string>& map)
+Hero::Hero(std::string texture_path, double speed, std::vector<sf::IntRect> rects, Map& map)
     : _map(map)
 {
     _texture.loadFromFile(texture_path);
@@ -60,7 +60,7 @@ void Hero::update(double dt) {
     auto pos = getPosition();
     std::cout << "[" << pos.x << "," << pos.y << "]" << std::endl;
     // std::cout << int(_map[pos.x][pos.y+1]) << std::endl;
-    if (_map[pos.y+1][pos.x] == ' ') {
+    if (_map(pos.x,pos.y+1) == ' ') {
         _speedY+=a*dt;
         _sprite.move(0,dt*_speedY);
     } else {

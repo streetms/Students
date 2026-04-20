@@ -3,7 +3,7 @@ project(mario)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
-file(COPY ${CMAKE_SOURCE_DIR}/images
+file(COPY ${CMAKE_SOURCE_DIR}/images ${CMAKE_SOURCE_DIR}/levels
         DESTINATION ${CMAKE_BINARY_DIR})
 # --- 1. Настройка зависимостей ---
 include(FetchContent)
@@ -16,7 +16,9 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(sfml)
 # --- 2. Сборка вашего проекта ---
-add_executable(mario main.cpp Hero.cpp Hero.h block.cpp block.h)
+add_executable(mario main.cpp Hero.cpp Hero.h block.cpp block.h
+        Map.cpp
+        Map.h)
 
 # --- 3. Подключение библиотек ---
 # Так как мы использовали FetchContent, библиотеки называются просто sfml-*

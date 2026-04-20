@@ -5,7 +5,7 @@
 #ifndef MARIO_HERO_H
 #define MARIO_HERO_H
 #include <SFML/Graphics.hpp>
-
+#include "Map.h"
 
 class Hero : public sf::Drawable {
     enum class Direction {left=-1,stay=0, right=1};
@@ -18,10 +18,10 @@ class Hero : public sf::Drawable {
     int _currentRect;
     sf::IntRect reflect(sf::IntRect rect);
     Direction _direction;
-    std::vector<std::string>& _map;
+    Map _map;
     double a;
     public:
-    Hero(std::string texture_path, double speed, std::vector<sf::IntRect> rects,std::vector<std::string>& map);
+    Hero(std::string texture_path, double speed, std::vector<sf::IntRect> rects,Map& map);
     void update(double dt);
     void setPosition(int x, int y);
     sf::Vector2f getPosition();

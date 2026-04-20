@@ -4,24 +4,6 @@
 
 #include "Hero.h"
 #include "block.h"
-std::vector<std::string> map{
-    "  S                        ",
-    "                           ",
-    "                           ",
-    "                           ",
-    "  #                        ",
-    "                           ",
-    "                           ",
-    "                           ",
-    "                           ",
-    "                           ",
-    "                           ",
-    "                       #   ",
-    "                       #   ",
-    "####################  #####",
-    "                           ",
-    "                           "
-};
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML");
@@ -31,25 +13,22 @@ int main() {
         sf::IntRect(64,96, 32, 32),
         sf::IntRect(96,96, 32, 32),
     };
-
+    Map map;
+    map.loadFromFile("levels/level1.txt");
     Block::setTexture("images/blocks.png");
     auto hero = std::make_shared<Hero>("images/hero.png",50,rects,map);
-
-    // Block block;
     std::vector<std::shared_ptr<sf::Drawable>> objects = {
          hero
     };
 
-    for (int i = 0; i < map.size(); i++) {
-        for (int j = 0; j < map[i].size(); j++) {
-            if (map[i][j] == '#') {
+    for (int i = 0; i < map.getSize().x; i++) {
+        for (int j = 0; j < map.getSize().y; j++) {
+            if (map(i,j) == '#') {
                 auto block = std::make_shared<Block>();
-                block->setPosition(j,i);
+                block->setPosition(i,j);
                  objects.push_back(block);
             }
-            if (map[i][j] == 'S') {
-                // std::make_shared<Hero>("/home/konstantin/CLionProjects/Students/Examples/Mario/images/hero.png",50,rects);
-
+            if (map(i,j) == 'S') {
                 hero->setPosition(j,i);
             }
         }
