@@ -14,9 +14,9 @@ int main() {
         sf::IntRect(96,96, 32, 32),
     };
     Map map;
-    map.loadFromFile("levels/level1.txt");
-    Block::setTexture("images/blocks.png");
-    auto hero = std::make_shared<Hero>("images/hero.png",50,rects,map);
+    map.loadFromFile("assets/levels/level1.txt");
+    Block::setTexture("assets/images/blocks.png");
+    auto hero = std::make_shared<Hero>("assets/images/hero.png",50,rects,map);
     std::vector<std::shared_ptr<sf::Drawable>> objects = {
          hero
     };

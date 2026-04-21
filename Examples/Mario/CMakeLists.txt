@@ -3,8 +3,7 @@ project(mario)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
-file(COPY ${CMAKE_SOURCE_DIR}/images ${CMAKE_SOURCE_DIR}/levels
-        DESTINATION ${CMAKE_BINARY_DIR})
+
 # --- 1. Настройка зависимостей ---
 include(FetchContent)
 
@@ -16,7 +15,12 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(sfml)
 # --- 2. Сборка вашего проекта ---
-add_executable(mario main.cpp Hero.cpp Hero.h block.cpp block.h
+add_executable(mario
+        main.cpp
+        Hero.cpp
+        Hero.h
+        block.cpp
+        block.h
         Map.cpp
         Map.h)
 
@@ -33,3 +37,11 @@ if(WIN32)
             COMMAND_EXPAND_LISTS
     )
 endif()
+
+add_custom_target(copy_assets ALL
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/assets
+        ${CMAKE_BINARY_DIR}/assets
+)
+
+add_dependencies(mario copy_assets)
