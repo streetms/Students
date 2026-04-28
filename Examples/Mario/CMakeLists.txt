@@ -17,16 +17,16 @@ FetchContent_MakeAvailable(sfml)
 # --- 2. Сборка вашего проекта ---
 add_executable(mario
         main.cpp
-        Hero.cpp
-        Hero.h
+        hero.cpp
+        hero.h
         block.cpp
         block.h
-        Map.cpp
-        Map.h)
+        map.cpp
+        map.h)
 
 # --- 3. Подключение библиотек ---
 # Так как мы использовали FetchContent, библиотеки называются просто sfml-*
-target_link_libraries(mario PRIVATE sfml-network sfml-graphics sfml-window)
+target_link_libraries(mario PRIVATE sfml-network sfml-graphics sfml-window sfml-audio)
 
 # --- 4. Автоматическое копирование DLL в папку с exe (только Windows) ---
 if(WIN32)
