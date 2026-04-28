@@ -1,12 +1,20 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <vector>
 #include <memory>
+#include <iostream>
 
-#include "Hero.h"
+#include "hero.h"
 #include "block.h"
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML");
+    sf::SoundBuffer buffer;
+    buffer.loadFromFile("assets/audio/mario-smert3.wav");
+    sf::Sound sound;
+    sound.setBuffer(buffer);
+    sound.play();
+    sf::Clock clock2;
     std::vector<sf::IntRect> rects = {
         sf::IntRect(0, 96, 32, 32),
         sf::IntRect(32,96, 32, 32),
@@ -33,10 +41,10 @@ int main() {
             }
         }
     }
-
     double currentFrame = 0;
     double speed = 50;
     sf::Clock clock;
+    double d1 = 0;
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -45,6 +53,7 @@ int main() {
             }
         }
         auto dt = clock.restart().asSeconds();
+        d1+=dt;
 
         hero->update(dt);
         window.clear(sf::Color::Black);

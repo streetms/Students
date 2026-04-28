@@ -2,7 +2,7 @@
 // Created by konstantin on 20.04.2026.
 //
 
-#include "Map.h"
+#include "map.h"
 #include <fstream>
 void Map::loadFromFile(std::string fileName) {
     std::ifstream fin(fileName);
